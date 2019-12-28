@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename method &apos;Main.search(...)&apos; to &apos;dfs&apos;&#x0D;&#x0A;- Original project: &apos;01260 DFS와 BFS 2&apos;&#x0D;&#x0A;- Original element: &apos;Main.search(...)&apos;&#x0D;&#x0A;- Renamed element: &apos;Main.dfs(...)&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;search&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;{Main.java[Main~search~I" name="dfs" references="true" stamp="1568883855211" version="1.0"/>
-</session>

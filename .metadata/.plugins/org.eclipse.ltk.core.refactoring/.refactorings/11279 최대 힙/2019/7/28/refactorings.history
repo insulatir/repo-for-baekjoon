@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename local variable &apos;minHeap&apos; in &apos;Main.main(...)&apos; to &apos;maxHeap&apos;&#x0D;&#x0A;- Original project: &apos;11279 최대 힙&apos;&#x0D;&#x0A;- Original element: &apos;Main.main(String[]).minHeap&apos;&#x0D;&#x0A;- Renamed element: &apos;minHeap&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;minHeap&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{Main.java[Main~main~\[QString;@minHeap!174!235!197!203!QPriorityQueue\&lt;QInteger;&gt;;!0!false" name="maxHeap" references="true" stamp="1562464382868" version="1.0"/>
-</session>

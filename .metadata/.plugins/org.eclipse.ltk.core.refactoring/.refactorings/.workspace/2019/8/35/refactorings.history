@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename Java project &apos;014443 채점 소수 번호&apos; to &apos;14443 채점 소수 번호&apos;&#x0D;&#x0A;- Original element: &apos;014443 채점 소수 번호&apos;&#x0D;&#x0A;- Renamed element: &apos;014443 채점 소수 번호&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename Java project &apos;014443 채점 소수 번호&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=014443 채점 소수 번호" name="14443 채점 소수 번호" references="true" stamp="1566783767099" version="1.0"/>
-</session>

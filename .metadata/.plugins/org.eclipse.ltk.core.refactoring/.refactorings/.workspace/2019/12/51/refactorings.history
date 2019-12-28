@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename Java project &apos;16394 홍익대하교&apos; to &apos;16394 홍익대학교&apos;&#x0D;&#x0A;- Original element: &apos;16394 홍익대하교&apos;&#x0D;&#x0A;- Renamed element: &apos;16394 홍익대하교&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename Java project &apos;16394 홍익대하교&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=16394 홍익대하교" name="16394 홍익대학교" references="true" stamp="1576916329335" version="1.0"/>
-</session>
