@@ -1,0 +1,32 @@
+import java.util.*;
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		
+		int T = scan.nextInt();
+		for (int i = 0; i < T; i++) {
+			int N = scan.nextInt();
+			int M = scan.nextInt();
+			
+		}
+		
+		scan.close();
+	}
+
+	public static int opt(int[][] M, int n, int m) {
+		if (M[n][m] != -1) {
+			return M[n][m];
+		}
+		if (m < n) {
+			return 0;
+		}
+		
+		M[n][m] = 0;
+		for (int i = 1; i < n; i++) {
+			M[n][m] += (m-i)*opt(M, i, m);
+		}
+		
+		return M[n][m];
+	}
+}

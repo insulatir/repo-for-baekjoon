@@ -1,0 +1,22 @@
+import java.util.*;
+public class Main {
+	static int[] a;
+	static int[] tree;
+	
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		
+		
+		
+		scan.close();
+	}
+
+	public static int init(int node, int start, int end) {
+		if (start == end) {
+			return tree[node] = a[start];
+		} else {
+			return tree[node] = init(node*2, start, (start+end)/2) +
+					init(node*2+1, (start+end)/2+1, end);
+		}
+	}
+}

@@ -1,0 +1,24 @@
+import java.util.*;
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		
+		int N = scan.nextInt();
+		int K = scan.nextInt();
+		
+		List<Integer> list = new LinkedList<>();
+		for (int i = 1; i <= N; i++) {
+			list.add(i);
+		}
+		
+		int index = K;
+		while (!list.isEmpty()) {
+			System.out.print(list.remove(index-1));
+			index = (index + 3) % list.size();
+		}
+		
+		scan.close();
+	}
+
+}

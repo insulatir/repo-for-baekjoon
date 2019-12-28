@@ -1,0 +1,14 @@
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+	}
+	
+	private static void getChe1(int num) {
+		int[] arr = new int[num];
+		
+		for(int i = 2; i <= num; i++)
+			
+	}
+}

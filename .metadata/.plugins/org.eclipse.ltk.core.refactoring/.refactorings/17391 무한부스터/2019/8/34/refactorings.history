@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;n&apos; in &apos;Main&apos; to &apos;N&apos;&#x0D;&#x0A;- Original project: &apos;17391 무한부스터&apos;&#x0D;&#x0A;- Original element: &apos;Main.n&apos;&#x0D;&#x0A;- Renamed element: &apos;Main.N&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;n&apos;" flags="589830" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;{Main.java[Main^n" name="N" references="true" setter="false" stamp="1566648337984" textual="false" version="1.0"/>
+</session>

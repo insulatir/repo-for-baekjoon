@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;sum&apos; in &apos;Main.main(...)&apos; to &apos;len&apos;&#x0D;&#x0A;- Original project: &apos;11053 가장 긴 증가하는 부분 수열&apos;&#x0D;&#x0A;- Original element: &apos;Main.main(String[]).sum&apos;&#x0D;&#x0A;- Renamed element: &apos;sum&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;sum&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{Main.java[Main~main~\[QString;@sum!223!245!229!231!\[I!0!false" name="len" references="true" stamp="1554447424549" version="1.0"/>
+</session>
