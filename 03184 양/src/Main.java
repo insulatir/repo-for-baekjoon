@@ -1,4 +1,7 @@
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
 public class Main {
 	static String[][] map;
 	static boolean[][] visit;
@@ -58,7 +61,7 @@ public class Main {
 			
 			if (map[n.y][n.x].equals("v")) {
 				w += 1;
-			} else if (map[n.y][n.x].equals("k")) {
+			} else if (map[n.y][n.x].equals("o")) {
 				s += 1;
 			}
 			
