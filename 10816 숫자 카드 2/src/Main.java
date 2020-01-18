@@ -10,28 +10,18 @@ public class Main {
 			A[i] = scan.nextInt();
 		}
 		
-		int M = scan.nextInt();
+		Arrays.sort(A);
 		
+		int M = scan.nextInt();
+		for (int i = 0; i < M; i++) {
+			
+			if (i < M - 1) {
+				System.out.print(" ");
+			}
+		}
 		
 		scan.close();
 	}
 
-	public static int bin_search(int[] A, int start, int end, int X) {
-		if (start == end) {
-			if (A[start] == X) {
-				return 1;
-			} else {
-				return 0;
-			}
-		}
-		
-		int mid = (start+end)/2;
-		int m = A[mid];
-		int p, q = 0;
-		if (m < X) {
-			q = bin_search(A, mid+1, end, X);
-		} else {
-			p = bin_search(A, start, mid, X);
-		}
-	}
+	
 }
