@@ -1,52 +1,52 @@
 import java.util.*;
-import java.io.*;
 public class Main {
-	static List<ArrayList<Integer>> list;
-	static boolean[] visited;
-	static boolean[] student;
+	public static int[] s;
+	public static int[] team;
+	public static int ith;
 	
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
 		
-		int T = Integer.parseInt(br.readLine());
+		int T = scan.nextInt();
 		for (int i = 0; i < T; i++) {
-			int n = Integer.parseInt(br.readLine());
-			int[] stu = new int[n+1];
-			StringTokenizer st = new StringTokenizer(br.readLine());
+			int n = scan.nextInt();
+			s = new int[n+1];
 			for (int j = 1; j <= n; j++) {
-				stu[j] = Integer.parseInt(st.nextToken());
+				s[j] = scan.nextInt();
 			}
 			
-			visited = new boolean[n+1];
-			student = new boolean[n+1];
+			team = new int[n+1];
+			ith = 0;
 			
-			list = new ArrayList<>();
-			for (int j = 0; j <= n; j++) {
-				ArrayList<Integer> sub = new ArrayList<>();
-				list.add(sub);
-			}
-			
+			int res = n;
 			for (int j = 1; j <= n; j++) {
-				list.get(j).add(stu[j]);
+				if (team[j] == 0) {
+					res -= dfs(j, ith+1);
+				} 
 			}
+			
+			System.out.println(res);
 		}
 		
-		bw.flush();
-		bw.close();
+		scan.close();
 	}
 
-	public static void dfs(int v, int first) {
-		visited[v] = true;
+	public static int dfs(int v, int start) {
+		int n = s[v];
 		
-		for (int i : list.get(v)) {
-			if (!visited[i]) {
-				dfs(i, first);
-			}
+		if (team[v] == 0) {
+			ith += 1;
+			team[v] = ith;
+		} 
+		
+		if (team[v] >= team[n] && team[n] >= start) {
+			return ith - team[n] + 1;
+		}
+
+		if (team[n] > 0) {
+			return 0;
 		}
 		
-		if (v == first) {
-			
-		}
+		return dfs(n, start);
 	}
 }
