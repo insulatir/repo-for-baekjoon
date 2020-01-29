@@ -5,19 +5,14 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		
 		int N = scan.nextInt();
-		int[] A = new int[N];
+		int[] count = new int[20000001];
 		for (int i = 0; i < N; i++) {
-			A[i] = scan.nextInt();
+			count[scan.nextInt()+10000000] += 1;
 		}
-		
-		Arrays.sort(A);
 		
 		int M = scan.nextInt();
 		for (int i = 0; i < M; i++) {
-			
-			if (i < M - 1) {
-				System.out.print(" ");
-			}
+			System.out.print(count[scan.nextInt()+10000000] + " ");
 		}
 		
 		scan.close();
