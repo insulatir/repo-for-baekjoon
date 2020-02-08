@@ -8,16 +8,15 @@ public class Main {
 		int f = scan.nextInt();
 		int c = scan.nextInt();
 		
+		int empty = e + f;
 		int res = 0;
-		int valid = (e + f) / c;
-		int empty = (e + f) % c;
-		while (valid > 0) {
-			res += valid;
-			valid = (valid + empty) / c;
-			empty = (valid + empty) % c;
+		while (empty >= c) {
+			empty -= c;
+			res += 1;
+			empty += 1;
 		}
 		
-		System.out.println(res);
+		System.out.print(res);
 		
 		scan.close();
 	}
