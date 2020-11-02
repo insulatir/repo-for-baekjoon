@@ -1,6 +1,6 @@
 import java.util.*;
 public class Main {
-	public static boolean[][] visit;
+	public static boolean[] check;
 	public static int[] dx = {0, 0, 1, -1};
 	public static int[] dy = {1, -1, 0, 0};
 	public static int R;
@@ -12,50 +12,44 @@ public class Main {
 		
 		R = scan.nextInt();
 		C = scan.nextInt();
-		String[][] map = new String[R][C];
+		char[][] map = new char[R][C];
 		for (int i = 0; i < R; i++) {
 			String line = scan.next();
 			for (int j = 0; j < C; j++) {
-				map[i][j] = line.substring(j, j+1);
+				map[i][j] = line.charAt(j);
 			}
 		}
 		
-		visit = new boolean[R][C];
-		
+		check = new boolean[26];
+		check[map[0][0]-'A'] = true;
 		max = 1;
 		
-		List<String> list = new ArrayList<>();
-		list.add(map[0][0]);
-		
-		back(0, 0, list, map, 1);
+		back(0, 0, map, 1);
 		
 		System.out.print(max);
 		
 		scan.close();
 	}
-	
-	public static boolean promising(int y, int x, String[][] map, List<String> list) {
-		String alpha = map[y][x];
-		return !list.contains(alpha) && !visit[y][x];
-	}
 
-	public static void back(int y, int x, List<String> list, String[][] map, int len) {
+	public static void back(int y, int x, char[][] map, int len) {	
 		for (int i = 0; i < 4; i++) {
 			int ny = y + dy[i];
 			int nx = x + dx[i];
 
 			if (0 <= ny && ny < R && 0 <= nx && nx < C) {
-				if (promising(ny, nx, map, list)) {
+				int alpha = map[ny][nx] - 'A';
+				if (!check[alpha]) {
 					if (max < len+1) {
 						max = len+1;
 					}
 					
-					visit[ny][nx] = true;
-					list.add(map[ny][nx]);
-					back(ny, nx, list, map, len+1);
+					// ¾ËÆÄºªÀ» ¹âÀ½
+					check[alpha] = true;
+					back(ny, nx, map, len+1);
+					// ¾ËÆÄºª¿¡¼­ ³ª¿È
+					check[alpha] = false;
 				} 
-			}
-			
+			}	
 		}
 	}
 }

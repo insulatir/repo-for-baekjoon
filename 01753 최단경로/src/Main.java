@@ -1,80 +1,76 @@
 import java.util.*;
 public class Main {
-	static List<LinkedList<Edge>> list;
-	static int[] dist;
-	static int V;
+	static int INF = Integer.MAX_VALUE;
+	static int[] d = new int[100001];
+	static List<ArrayList<Node>> graph = new ArrayList<>();
 	
-	public static class Edge {
-		int q;
-		int w;
+	public static class Node implements Comparable<Node> {
+		int index;
+		int distance;
 		
-		public Edge(int q, int w) {
-			this.q = q;
-			this.w = w;
+		public Node (int index, int distance) {
+			this.index = index;
+			this.distance = distance;
 		}
-	}
-	
-	public static class Vertex {
-		int d;
-		int i;
 		
-		public Vertex(int i, int d) {
-			this.i = i;
-			this.d = d;
+		public int compareTo(Node other) {
+			if (this.distance < other.distance) {
+				return -1;
+			}
+			
+			return 1;
 		}
 	}
 	
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
-		V = scan.nextInt();
+		int V = scan.nextInt();
 		int E = scan.nextInt();
-		int start = scan.nextInt();
+		int K = scan.nextInt();
 		
-		list = new ArrayList<>();
 		for (int i = 0; i <= V; i++) {
-			LinkedList<Edge> sub = new LinkedList<>();
-			list.add(sub);
+			graph.add(new ArrayList<>());
 		}
 		
 		for (int i = 0; i < E; i++) {
 			int u = scan.nextInt();
 			int v = scan.nextInt();
 			int w = scan.nextInt();
-			
-			list.get(u).add(new Edge(v, w));
+			graph.get(u).add(new Node(v, w));
 		}
 		
-		dist = new int[V+1];
-		Arrays.fill(dist, Integer.MAX_VALUE);
-		dist[start] = 0;
+		Arrays.fill(d, INF);
 		
-		dijk(start);
+		dijk(K);
 		
-		for (int i = 1; i <= V; i++) {
-			if (dist[i] == Integer.MAX_VALUE) {
+		for (int i = 1;i <= V; i++) {
+			if (d[i] == INF) {
 				System.out.println("INF");
 			} else {
-				System.out.println(dist[i]);
+				System.out.println(d[i]);
 			}
 		}
 		
 		scan.close();
 	}
-	
-	public static void dijk(int v) {
-		PriorityQueue<Vertex> pq = new PriorityQueue<>(
-				(Vertex v1, Vertex v2) -> Integer.compare(v1.d, v2.d));
-		
-		pq.add(new Vertex(v, 0));
-		
+
+	public static void dijk(int start) {
+		PriorityQueue<Node> pq = new PriorityQueue<>();
+		d[start] = 0;
+		pq.add(new Node(start, 0));
 		while (!pq.isEmpty()) {
-			Vertex n = pq.poll();
-			dist[n.i] = Math.min(dist[n.i], n.d);
-			for (Edge edge : list.get(n.i)) {
-				if (dist[edge.q] > dist[n.i] + edge.w) {
-					dist[edge.q] = dist[n.i] + edge.w;
-					pq.add(new Vertex(edge.q, dist[edge.q]));
+			Node now = pq.poll();
+			int dis = now.distance;
+			int idx = now.index;
+			if (d[idx] < dis) {
+				continue;
+			}
+			
+			for (Node next : graph.get(idx)) {
+				if (d[idx] + next.distance < d[next.index]) {
+					d[next.index] = d[idx] + next.distance;
+					pq.add(new Node(next.index, d[next.index]));
 				}
 			}
 		}

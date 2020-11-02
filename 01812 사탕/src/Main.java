@@ -4,28 +4,34 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
-		int n = scan.nextInt();
-		int s1 = 0;
-		int s[] = new int[n];
-		int ss[] = new int[n];
+		int N = scan.nextInt();
 		
-		for(int i = 0; i < n; i++)
-			ss[i] = scan.nextInt();
-		
-		for(int i = 0; i < n; i++) {
-			if(i == 0 || i == n-1)
-				s1 += ss[i];
-			else
-				s1 -= ss[i];
+		int sum = 0;
+		int[] candy_sum = new int[N];
+		for (int i = 0; i < N; i++) {
+			candy_sum[i] = scan.nextInt();
+			sum += candy_sum[i];
 		}
 		
-		s[0] = s1/2;
+		sum /= 2;
 		
-		for(int i = 1; i < n; i++)
-			s[i] = ss[i-1] - s[i-1];
+		int one = sum;
+		for (int i = 1; 2*i < N; i++) {
+			one -= candy_sum[2*i-1];
+		}
 		
-		for(int i = 0; i < n; i++)
-			System.out.println(s[i]);
+		int[] candy = new int[N];
+		candy[0] = one;
+		for (int i = 1; i < N; i++) {
+			candy[i] = candy_sum[i-1] - candy[i-1];
+		}
+		
+		for (int i = 0; i < N; i++) {
+			System.out.print(candy[i]);
+			if (i < N-1) {
+				System.out.println();
+			}
+		}
 		
 		scan.close();
 	}

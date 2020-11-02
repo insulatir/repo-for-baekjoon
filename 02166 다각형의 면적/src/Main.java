@@ -6,23 +6,23 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		
 		int numPoints = scanner.nextInt();
-		int[] x = new int[numPoints];
-		int[] y = new int[numPoints];
+		long[] x = new long[numPoints];
+		long[] y = new long[numPoints];
 		double area = 0;
-		int j = numPoints - 1;
 		
 		for(int i = 0; i < numPoints; i++) {
-			x[i] = scanner.nextInt();
-			y[i] = scanner.nextInt();
+			x[i] = scanner.nextLong();
+			y[i] = scanner.nextLong();
 		}
 		
-		for(int k = 0; k < numPoints; k++) {
-			area += (x[j] + x[k]) * (y[j] - y[k]);
-			j = k;
-		}
+		int j = numPoints - 1;
+		for (int i = 0; i < numPoints; i++) {
+            area += (x[j] + x[i]) * (y[j] - y[i]);
+            j = i;
+        }
 		
-		area = area / 2.0;
-		System.out.print(Math.abs(Math.round(area * 10) / 10.0));
+		area = Math.abs(area) / 2.0;
+		System.out.print(String.format("%.1f", area));
 		
 		scanner.close();
 	}

@@ -1,8 +1,8 @@
 import java.util.*;
 public class Main {
+	static long[] arr;
 	static int mod = 1000000007;
-	static int[] arr;
-	
+
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
@@ -10,74 +10,71 @@ public class Main {
 		int M = scan.nextInt();
 		int K = scan.nextInt();
 		
-		arr = new int[N+1];
+		arr = new long[N+1];
 		for (int i = 1; i <= N; i++) {
-			arr[i] = scan.nextInt();
+			arr[i] = scan.nextLong();
 		}
 		
-		int[] tree = new int[4*N];
-		init(arr, tree, 1, N, 1);
+		long[] seg = new long[4*N];
+		
+		init(arr, seg, 1, N, 1);
 		
 		for (int i = 0; i < M+K; i++) {
 			int a = scan.nextInt();
 			int b = scan.nextInt();
-			int c = scan.nextInt();
+			long c = scan.nextLong();
 			
 			if (a == 1) {
-				double diff = (double)c / (double)arr[b];
-				if (arr[b] == 0) {
-					diff = c;
-				}
-				update(tree, 1, N, b, diff, 1);
+				update(seg, 1, N, b, 1, c);
 			} else {
-				System.out.println(mul(tree, 1, N, b, c, 1));
+				System.out.println(mul(seg, 1, N, b, (int)c, 1) % mod);
 			}
 		}
 		
 		scan.close();
 	}
 
-	public static int init(int[] arr, int[] tree, int start, int end, int node) {
-		if (start == end) {
-			return tree[node] = (arr[start] % mod);
+	public static long init(long[] arr, long[] seg, int s, int e, int node) {
+		if (s == e) {
+			// 하나
+			return seg[node] = arr[s];
+			// 저장하고 리턴
 		}
 		
-		int mid = (start+end)/2;
-		return tree[node] = (init(arr, tree, start, mid, node*2) * init(arr, tree, mid+1, end, node*2+1)) % mod;
+		int m = (s+e)/2;
+		// 중간값
+		return seg[node] = ((init(arr, seg, s, m, 2*node) % mod) * (init(arr, seg, m+1, e, 2*node+1) % mod) % mod);
+		// 두 자식을 곱하고서 저장하고 리턴
 	}
-
-	public static void update(int[] tree, int start, int end, int index, double diff, int node) {
-		if (!(start <= index && index <= end)) {
-			return;
+	
+	public static long update(long[] seg, int s, int e, int index, int node, long c) {
+		if (!(s <= index && index <= e)) {
+			// 인덱스 범위에 들지 않으면 그대로 리턴
+			return seg[node] % mod;
 		}
 		
-		if (start != end) {
-			int mid = (start+end)/2;
-			update(tree, start, mid, index, diff, node*2);
-			update(tree, mid+1, end, index, diff, node*2+1);
+		if (s != e) {
+			// 하나 : base case
+			int m = (s+e)/2;
+			return seg[node] = ((update(seg, s, m, index, node*2, c) % mod) * (update(seg, m+1, e, index, node*2+1, c) % mod) % mod); 
 		} else {
-			if (tree[node] == 0) {
-				tree[node] = (int)diff;
-			}
-			arr[index] = tree[node];
-		}
-
-		if (tree[node] == 0) {
-			tree[node] = (tree[node*2] * tree[node*2+1]) % mod; 
-		} else {
-			tree[node] = (int)((double)tree[node] * diff) % mod;
+			// s = e = index
+			return seg[node] = c % mod;
 		}
 	}
 	
-	public static int mul(int[] tree, int start, int end, int left, int right, int node) {
-		if (right < start || end < left) {
+	public static long mul(long[] seg, int s, int e, int l, int r, int node) {
+		if (l > e || r < s) {
 			return 1;
 		}
-		if (left <= start && end <= right) {
-			return tree[node] % mod;
+		
+		if (l <= s && e <= r) {
+			// l, r 고정
+			// s, e 변함
+			return seg[node];
 		}
 		
-		int mid = (start+end)/2;
-		return (mul(tree, start, mid, left, right, node*2) * mul(tree, mid+1, end, left, right, node*2+1)) % mod;
+		int m = (s+e)/2;
+		return ((mul(seg, s, m, l, r, node*2) % mod) * (mul(seg, m+1, e, l, r, node*2+1) % mod) % mod);
 	}
 }

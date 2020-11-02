@@ -5,24 +5,21 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		
 		int n = scan.nextInt();
-		int[] amount = new int[n];
-		for (int i = 0; i < n; i++) {
-			amount[i] = scan.nextInt();
+		int[] arr = new int[10001];
+		for (int i = 1; i <= n; i++) {
+			arr[i] = scan.nextInt();
 		}
 		
-		int[][] sum = new int[n][2];
-		sum[0][0] = amount[0];
-		sum[1][0] = amount[1];
-		sum[1][1] = amount[0] + amount[1];
-		for (int i = 2; i < n; i++) {
-			sum[i][0] = Math.max(sum[i-2][0], sum[i-2][1]) + amount[i];
-			sum[i][1] = sum[i-1][0] + amount[i];
-			if (amount[i] == 0) {
-				sum[i][1] = Math.max(sum[i-1][0], sum[i-1][1]) + amount[i];
-			}
+		int[] dp = new int[10001];
+		dp[1] = arr[1];
+		dp[2] = arr[1] + arr[2];
+ 		for (int i = 3; i <= n; i++) {
+			dp[i] = Math.max(dp[i-1], // i번째 잔을 마시지 않은 경우
+					Math.max(dp[i-2]+arr[i], // i-1번째 잔을 마시지 않은 경우
+							dp[i-3]+arr[i-1]+arr[i])); // i-2번째 잔을 마시지 않은 경우
 		}
-		
-		System.out.print(Math.max(Math.max(sum[n-1][0], sum[n-1][1]), sum[n-2][1]));
+ 		
+ 		System.out.print(dp[n]);
 		
 		scan.close();
 	}
